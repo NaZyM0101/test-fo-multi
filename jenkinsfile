@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    options {
+        // Skip waiting for input at other stages (assuming this applies to all stages)
+        disableConcurrentBuilds(abortPrevious: true)
+    }
+
+    stages {
+        stage('clone') { // Renamed stage for clarity
+            steps {
+                git branch: 'dev', url: 'https://github.com/NaZyM0101/test-fo-multi'
+            }
+        }
+        stage('build'){
+            steps{
+                sh "ls -la"
+            }
+        }
+        stage('Deploy') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo "main branch is changed"
+            }
+        }
+        stage('Deploy') {
+            when {
+                branch 'dev'
+            }
+            steps {
+               echo "dev branch is changed"
+            }
+        }
+    }
+}
