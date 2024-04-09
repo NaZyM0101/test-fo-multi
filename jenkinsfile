@@ -25,7 +25,7 @@ pipeline {
                 echo "main branch is changed"
             }
         }
-        stage('Deploy') {
+        stage('Deploy1') {
             when {
                 branch 'dev'
             }
