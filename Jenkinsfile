@@ -21,15 +21,24 @@ pipeline{
         }
         }
     }
-
-      post {
+  post {
     success {
       script {
         def branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
         echo "Current branch: ${branch}"
         SCB = "branch: ${branch}"
-        def lastSuccessBuildTime = Jenkins.instance.getItem(env.JOB_NAME)
-        echo "build ${lastSuccessBuildTime}"
+        def lastSuccessBuildTime = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild.getTimestamp().format("yyyy-MM-dd HH:mm:ss")
+        def lastSuccessBuildName = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild
+        echo "Last Successful Build Name: ${lastSuccessBuildName}"
+        LastSuccessName = "${lastSuccessBuildName.displayName}"
+        LastSuccessTime = "${lastSuccessBuildTime}"
+      }
+      // Use a dedicated library for notifications (recommended)
+      // Assuming a library named 'mattermostNotifier' is installed
+      mattermostSend(
+        // Replace with your channel name
+        message: " App build: '${env.JOB_NAME}' ${SCB} \n Status: **Success** [#${env.BUILD_NUMBER}](${env.BUILD_URL}/console)\n Last Successful Build id: [${LastSuccessName}](https://ci.mekdep.org/job/Go-SMPP/lastSuccessfulBuild/) time: [${LastSuccessTime}](https://ci.mekdep.org/job/Go-SMPP/lastSuccessfulBuild/) \n ChangeLog: [Link](https://ci.mekdep.org/job/Go-SMPP/changes) \n"
+      )
     }
 
     failure {
@@ -37,10 +46,16 @@ pipeline{
         def branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
         echo "Current branch: ${branch}"
         SCB = "branch: ${branch}"
-        def lastSuccessBuildTime = Jenkins.instance.getItem(env.JOB_NAME)
-        echo "build ${lastSuccessBuildTime}"
+        def lastSuccessBuildTime = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild.getTimestamp().format("yyyy-MM-dd HH:mm:ss")
+        def lastSuccessBuildName = Jenkins.instance.getItem(env.JOB_NAME).lastSuccessfulBuild
+        echo "Last Successful Build Name: ${lastSuccessBuildName}"
+        LastSuccess = "id: ${lastSuccessBuildName.displayName} timestamp: ${lastSuccessBuildTime}"
+      }
+      // Use a dedicated library for notifications (recommended)
+      mattermostSend(
+        color: "#FF0000",
+        message: " App build: '${env.JOB_NAME}' ${SCB} \n Status: **Failed** [#${env.BUILD_NUMBER}](${env.BUILD_URL}/console)\n Last Successful Build id: [${LastSuccessName}](https://ci.mekdep.org/job/Go-SMPP/lastSuccessfulBuild/) time: [${LastSuccessTime}](https://ci.mekdep.org/job/Go-SMPP/lastSuccessfulBuild/)\n ChangeLog: [Link](https://ci.mekdep.org/job/Go-SMPP/changes) \n"
+      )
     }
   }
-   }
-   }
 }
