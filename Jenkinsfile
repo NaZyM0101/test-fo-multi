@@ -2,7 +2,7 @@ pipeline{
     agent any
 
     stages{
-        stage("Checkout beta"){
+        stage("Checkout"){
             when{
                 branch 'dev'
             }
@@ -11,7 +11,7 @@ pipeline{
             echo "you are now in dev branch"
         }
         }
-        stage("Checkout main"){
+        stage("Checkout"){
             when{
                 branch 'main'
             }
@@ -21,7 +21,7 @@ pipeline{
         }
         }
     }
-}
+
       post {
     success {
       script {
@@ -43,3 +43,4 @@ pipeline{
   }
    }
    }
+}
