@@ -27,7 +27,7 @@ pipeline{
         def branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
         echo "Current branch: ${branch}"
         SCB = "branch: ${branch}"
-        def lastSuccessBuildName = Jenkins.instance.getItem("Multi_test_main").lastSuccessfulBuild
+        def lastSuccessBuildName = Jenkins.instance.getItemByFullName("Multi_test/${branch}")?.lastSuccessfulBuild
           echo "Now its test ${env.JOB_NAME}"
           echo "Last Success ${lastSuccessBuildName}"
       }
