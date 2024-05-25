@@ -27,10 +27,9 @@ pipeline{
         def branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
         echo "Current branch: ${branch}"
         SCB = "branch: ${branch}"
-        def lastSuccessBuildTime = Jenkins.instance.getItem(env.JOB_NAME)
-        def lastSuccessBuildName = Jenkins.instance.getItem(env.JOB_NAME)
-        echo "Last Successful Build Name: ${BUILD_NAME}"
+        def lastSuccessBuildName = Jenkins.instance.getItem("Multi_test_main").lastSuccessfulBuild
           echo "Now its test ${env.JOB_NAME}"
+          echo "Last Success ${lastSuccessBuildName}"
       }
       // Use a dedicated library for notifications (recommended)
       // Assuming a library named 'mattermostNotifier' is installed
@@ -45,7 +44,6 @@ pipeline{
         def branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
         echo "Current branch: ${branch}"
         SCB = "branch: ${branch}"
-        def lastSuccessBuildTime = Jenkins.instance.getItem(env.JOB_NAME)
         def lastSuccessBuildName = Jenkins.instance.getItem(env.JOB_NAME)
       }
       // Use a dedicated library for notifications (recommended)
