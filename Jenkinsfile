@@ -29,7 +29,8 @@ pipeline{
         SCB = "branch: ${branch}"
         def lastSuccessBuildTime = Jenkins.instance.getItem(env.JOB_NAME)
         def lastSuccessBuildName = Jenkins.instance.getItem(env.JOB_NAME)
-        echo "Last Successful Build Name: ${lastSuccessBuildName}"
+        echo "Last Successful Build Name: ${BUILD_NAME}"
+          echo "Now its test ${env.JOB_NAME}"
       }
       // Use a dedicated library for notifications (recommended)
       // Assuming a library named 'mattermostNotifier' is installed
