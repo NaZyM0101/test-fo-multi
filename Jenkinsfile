@@ -30,7 +30,7 @@ pipeline{
           echo "Job ${env.JOB_NAME}"
                   def lastSuccessBuildName = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")?.lastSuccessfulBuild
           echo "Las Build ${lastSuccessBuildName}"
-        def lastSuccessBuildTime = Jenkins.instance.getItem("${env.JOB_NAME}")?.lastSuccessfulBuild.getTimestamp().format("yyyy-MM-dd HH:mm:ss")
+        def lastSuccessBuildTime = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")?.lastSuccessfulBuild.getTimestamp().format("yyyy-MM-dd HH:mm:ss")
 
           echo "Now its test ${env.JOB_NAME}"
           echo "Last Success ${lastSuccessBuildName}"
