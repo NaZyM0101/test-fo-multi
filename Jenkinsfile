@@ -30,7 +30,7 @@ pipeline{
         def lastSuccessBuildName = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")?.lastSuccessfulBuild
         //def lastSuccessBuildTime = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")?.lastSuccessfulBuild.getTimestamp().format("yyyy-MM-dd HH:mm:ss")
         echo "Last Successful Build Name: ${lastSuccessBuildName}"
-        LastSuccessName = "${lastSuccessBuildName.displayName}"
+        LastSuccessName = "${lastSuccessBuildName}"
         //LastSuccessTime = "${lastSuccessBuildTime}"
       }
       // Use a dedicated library for notifications (recommended)
@@ -50,7 +50,7 @@ pipeline{
         //def lastSuccessBuildTime = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")?.lastSuccessfulBuild.getTimestamp().format("yyyy-MM-dd HH:mm:ss")
         echo "Last Successful Build Name: ${lastSuccessBuildName}"
         //LastSuccess = "id: ${lastSuccessBuildName.displayName} timestamp: ${lastSuccessBuildTime}"
-          LastSuccessName = "${lastSuccessBuildName.displayName}"
+          LastSuccessName = "${lastSuccessBuildName}"
       }
       // Use a dedicated library for notifications (recommended)
       mattermostSend(
