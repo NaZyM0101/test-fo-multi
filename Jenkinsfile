@@ -27,6 +27,7 @@ pipeline{
         def branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
         echo "Current branch: ${branch}"
         SCB = "branch: ${branch}"
+          echo "Job ${env.JOB_NAME}"
         def lastSuccessBuildTime = Jenkins.instance.getItem("${JOB_NAME}/${branch}")?.lastSuccessfulBuild.getTimestamp().format("yyyy-MM-dd HH:mm:ss")
         def lastSuccessBuildName = Jenkins.instance.getItemByFullName("${JOB_NAME}/${branch}")?.lastSuccessfulBuild
           echo "Now its test ${env.JOB_NAME}"
