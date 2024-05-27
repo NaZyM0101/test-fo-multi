@@ -44,7 +44,7 @@ pipeline{
         // Replace with your channel name
         message: " App build: '${env.JOB_NAME}' ${SCB} \n Status: **Success** [#${env.BUILD_NUMBER}](${env.BUILD_URL}/console)\n Last Successful Build id: [${LastSuccessName}](https://ci.mekdep.org/job/Go-SMPP/lastSuccessfulBuild/) time: [${LastSuccessTime}](https://ci.mekdep.org/job/Go-SMPP/lastSuccessfulBuild/) \n ChangeLog: [Link](https://ci.mekdep.org/job/Go-SMPP/changes) \n"
       )
-    }
+    
       // Use a dedicated library for notifications (recommended)
       // Assuming a library named 'mattermostNotifier' is installed
 
@@ -67,4 +67,4 @@ pipeline{
         message: " App build: '${env.JOB_NAME}' ${SCB} \n Status: **Failed** [#${env.BUILD_NUMBER}](${env.BUILD_URL}/console)\n Last Successful Build id: [${LastSuccessName}](https://ci.mekdep.org/job/Go-SMPP/lastSuccessfulBuild/) time: [${LastSuccessTime}](https://ci.mekdep.org/job/Go-SMPP/lastSuccessfulBuild/)\n ChangeLog: [Link](https://ci.mekdep.org/job/Go-SMPP/changes) \n"
       )}
   }
-}
+
