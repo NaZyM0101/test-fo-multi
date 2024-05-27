@@ -30,7 +30,7 @@ pipeline{
         def lastSuccessBuildName = Jenkins.instance.getItemByFullName("Multi_test/${branch}")?.lastSuccessfulBuild
           echo "Now its test ${env.JOB_NAME}"
           echo "Last Success ${lastSuccessBuildName}"
-      }
+      }}
       // Use a dedicated library for notifications (recommended)
       // Assuming a library named 'mattermostNotifier' is installed
 
