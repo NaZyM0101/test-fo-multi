@@ -27,8 +27,8 @@ pipeline{
         def branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
         echo "Current branch: ${branch}"
         SCB = "branch: ${branch}"
-        def lastSuccessBuildTime = Jenkins.instance.getItemByFullName(env.JOB_NAME)?.lastSuccessfulBuild.getTimestamp().format("yyyy-MM-dd HH:mm:ss")
-        def lastSuccessBuildName = Jenkins.instance.getItemByFullName(env.JOB_NAME)?.lastSuccessfulBuild
+        def lastSuccessBuildTime = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")?.lastSuccessfulBuild.getTimestamp().format("yyyy-MM-dd HH:mm:ss")
+        def lastSuccessBuildName = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")?.lastSuccessfulBuild
         echo "Last Successful Build Name: ${lastSuccessBuildName}"
         LastSuccessName = "${lastSuccessBuildName.displayName}"
         LastSuccessTime = "${lastSuccessBuildTime}"
@@ -46,8 +46,8 @@ pipeline{
         def branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
         echo "Current branch: ${branch}"
         SCB = "branch: ${branch}"
-        def lastSuccessBuildTime = Jenkins.instance.getItemByFullName(env.JOB_NAME)?.lastSuccessfulBuild.getTimestamp().format("yyyy-MM-dd HH:mm:ss")
-        def lastSuccessBuildName = Jenkins.instance.getItemByFullName(env.JOB_NAME)?.lastSuccessfulBuild
+        def lastSuccessBuildTime = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")?.lastSuccessfulBuild.getTimestamp().format("yyyy-MM-dd HH:mm:ss")
+        def lastSuccessBuildName = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")?.lastSuccessfulBuild
         echo "Last Successful Build Name: ${lastSuccessBuildName}"
         LastSuccess = "id: ${lastSuccessBuildName.displayName} timestamp: ${lastSuccessBuildTime}"
       }
