@@ -67,4 +67,4 @@ pipeline{
         message: " App build: '${env.JOB_NAME}' ${SCB} \n Status: **Failed** [#${env.BUILD_NUMBER}](${env.BUILD_URL}/console)\n Last Successful Build id: [${LastSuccessName}](https://ci.mekdep.org/job/Go-SMPP/lastSuccessfulBuild/) time: [${LastSuccessTime}](https://ci.mekdep.org/job/Go-SMPP/lastSuccessfulBuild/)\n ChangeLog: [Link](https://ci.mekdep.org/job/Go-SMPP/changes) \n"
       )}
   }
-
+}
