@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    environment{
+        branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
+    }
 
     stages{
         stage("Checkout beta"){
@@ -24,7 +27,7 @@ pipeline{
      post {
     success {
       script {
-        def branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
+        //def branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
         echo "Current branch: ${branch}"
         SCB = "branch: ${branch}"
         def lastSuccessBuildName = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")?.lastSuccessfulBuild
