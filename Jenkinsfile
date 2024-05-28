@@ -20,7 +20,7 @@ pipeline{
             }
             steps{
                 git branch: 'main', credentialsId: 'ci-mekdep', url: 'https://github.com/NaZyM0101/test-fo-multi'
-                echo "you are now in main branch"
+                echo "you are now in main branch this is second tesst"
         }
         }
         stage("Final"){
