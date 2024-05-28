@@ -35,13 +35,13 @@ pipeline{
         echo "Last Successful Build Name: ${lastSuccessBuildName}"
         LastSuccessName = "${lastSuccessBuildName.displayName}"
         LastSuccessTime = "${lastSuccessBuildTime}"
-          echo "Test for branch ${branch}"
+          echo "Test for branch ${env.branch}"
       }
       // Use a dedicated library for notifications (recommended)
       // Assuming a library named 'mattermostNotifier' is installed
       mattermostSend(
         // Replace with your channel name
-        message: " App build: '${env.JOB_NAME}' ${SCB} \n Status: **Success** [#${env.BUILD_NUMBER}](${env.BUILD_URL}/console)\n Last Successful Build id: [${LastSuccessName}](https://ci.mekdep.org/job/Multi_test/job/${branch}/) time: [${LastSuccessTime}](https://ci.mekdep.org/job/Multi_test/job/dev/lastSuccessfulBuild/)\n ChangeLog: [Link](https://ci.mekdep.org/job/Multi_test/job/dev/changes) \n"
+        message: " App build: '${env.JOB_NAME}' ${SCB} \n Status: **Success** [#${env.BUILD_NUMBER}](${env.BUILD_URL}/console)\n Last Successful Build id: [${LastSuccessName}](https://ci.mekdep.org/job/Multi_test/job/${env.branch}/) time: [${LastSuccessTime}](https://ci.mekdep.org/job/Multi_test/job/dev/lastSuccessfulBuild/)\n ChangeLog: [Link](https://ci.mekdep.org/job/Multi_test/job/dev/changes) \n"
       )
     }
 
