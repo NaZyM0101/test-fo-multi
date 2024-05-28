@@ -32,6 +32,7 @@ pipeline{
         echo "Last Successful Build Name: ${lastSuccessBuildName}"
         LastSuccessName = "${lastSuccessBuildName.displayName}"
         LastSuccessTime = "${lastSuccessBuildTime}"
+          echo "Test for branch ${branch}"
       }
       // Use a dedicated library for notifications (recommended)
       // Assuming a library named 'mattermostNotifier' is installed
