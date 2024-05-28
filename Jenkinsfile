@@ -41,8 +41,12 @@ pipeline{
       // Assuming a library named 'mattermostNotifier' is installed
       mattermostSend(
         // Replace with your channel name
-        message: " App build: '${env.JOB_NAME}' ${SCB} \n Status: **Success** [#${env.BUILD_NUMBER}](${env.BUILD_URL}/console)\n Last Successful Build id: [${LastSuccessName}](https://ci.mekdep.org/job/Multi_test/job/${env.BRANCH_NAME}/) time: [${LastSuccessTime}](https://ci.mekdep.org/job/Multi_test/job/${env.BRANCH_NAME}/lastSuccessfulBuild/)\n ChangeLog: [Link](https://ci.mekdep.org/job/Multi_test/job/${env.BRANCH_NAME}
-        def branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
+        message: " App build: '${env.JOB_NAME}' ${SCB} \n Status: **Success** [#${env.BUILD_NUMBER}](${env.BUILD_URL}/console)\n Last Successful Build id: [${LastSuccessName}](https://ci.mekdep.org/job/Multi_test/job/${env.BRANCH_NAME}/) time: [${LastSuccessTime}](https://ci.mekdep.org/job/Multi_test/job/${env.BRANCH_NAME}/lastSuccessfulBuild/)\n ChangeLog: [Link](https://ci.mekdep.org/job/Multi_test/job/${env.BRANCH_NAME}\n"
+       )
+    
+     failure{
+        script{
+         def branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
         echo "Current branch: ${branch}"
         SCB = "branch: ${branch}"
         def lastSuccessBuildName = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")?.lastSuccessfulBuild
