@@ -28,8 +28,8 @@ pipeline{
     success {
       script {
         //def branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
-        echo "Current branch: ${branch}"
-        SCB = "branch: ${branch}"
+        echo "Current branch: ${env.BRANCH_NAME}"
+        SCB = "branch: ${env.BRANCH_NAME}"
         def lastSuccessBuildName = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")?.lastSuccessfulBuild
         def lastSuccessBuildTime = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")?.lastSuccessfulBuild.getTimestamp().format("yyyy-MM-dd HH:mm:ss")
         echo "Last Successful Build Name: ${lastSuccessBuildName}"
