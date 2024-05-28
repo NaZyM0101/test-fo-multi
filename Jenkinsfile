@@ -37,7 +37,7 @@ pipeline{
       // Assuming a library named 'mattermostNotifier' is installed
       mattermostSend(
         // Replace with your channel name
-message: " App build: '${env.JOB_NAME}' ${SCB} \n Status: **Success** [#${env.BUILD_NUMBER}](${env.BUILD_URL}/console)\n Last Successful Build id: [${LastSuccessName}](https://ci.mekdep.org/job/Multi_test/job/${branch}/) time: [${LastSuccessTime}](https://ci.mekdep.org/job/Multi_test/job/${branch}/lastSuccessfulBuild/)\n ChangeLog: [Link](https://ci.mekdep.org/job/Multi_test/job/${branch}) \n"/changes) \n"
+        message: " App build: '${env.JOB_NAME}' ${SCB} \n Status: **Success** [#${env.BUILD_NUMBER}](${env.BUILD_URL}/console)\n Last Successful Build id: [${LastSuccessName}](https://ci.mekdep.org/job/Multi_test/job/${branch}/) time: [${LastSuccessTime}](https://ci.mekdep.org/job/Multi_test/job/${branch}/lastSuccessfulBuild/)\n ChangeLog: [Link](https://ci.mekdep.org/job/Multi_test/job/${branch}/changes) \n"
       )
     }
 
