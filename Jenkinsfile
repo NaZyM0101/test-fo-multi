@@ -26,7 +26,7 @@ pipeline {
         git branch: 'main', credentialsId: 'ci-mekdep', url: 'https://github.com/NaZyM0101/test-fo-multi'
         script {
           echo "you are now in main branch this is second tesst"
-          def appDir = "Multi_test_${branch}"
+          def appDir = "Multi_test_${env.branch}"
           echo "Your appdir is ${appDir}"
         }
       }
