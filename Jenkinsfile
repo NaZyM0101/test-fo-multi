@@ -27,7 +27,8 @@ pipeline {
         script {
           echo "you are now in main branch this is second tesst"
           def appDir = Jenkins.instance.getItemByFullName("${env.JOB_NAME}").getName()
-          echo "Your appdir is ${appDir}"
+          
+          echo "Your appdir is ${appDir}, ${env.JOB_NAME}"
         }
       }
     }
