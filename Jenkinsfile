@@ -9,26 +9,25 @@ pipeline{
             when{
                 branch 'dev'
             }
+            def appDir = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")
             steps{
             git branch: 'dev', credentialsId: 'ci-mekdep', url: 'https://github.com/NaZyM0101/test-fo-multi'
-                step{
             echo "you are now in dev branch"
-                def appDir = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")
-            echo "Your appdir is ${appDir}"
-                }
+
+            echo "Your appdir is ${appDir}
         }
         }
         stage("Checkout main"){
             when{
                 branch 'main'
             }
+                            def appDir = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")
             steps{
                 git branch: 'main', credentialsId: 'ci-mekdep', url: 'https://github.com/NaZyM0101/test-fo-multi'
-                step{
+                
                 echo "you are now in main branch this is second tesst"
-                def appDir = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")
                 echo "Your appdir is ${appDir}"
-        }}
+        }
         }
         stage("Final"){
             steps{
