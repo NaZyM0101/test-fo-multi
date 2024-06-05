@@ -26,9 +26,8 @@ pipeline {
         git branch: 'main', credentialsId: 'ci-mekdep', url: 'https://github.com/NaZyM0101/test-fo-multi'
         script {
           echo "you are now in main branch this is second tesst"
-          def appDir = Jenkins.instance.getItemByFullName("${env.JOB_NAME}").getName()
-          def jobdir = Jenkins.instance.getItemByName("${env.JOB_NAME}")
-          echo "Your appdir is ${appDir},  ${jobdir}"
+          def appDir = "Multi_test_${branch}"
+          echo "Your appdir is ${appDir}"
         }
       }
     }
