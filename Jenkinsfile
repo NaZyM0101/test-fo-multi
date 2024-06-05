@@ -14,7 +14,7 @@ pipeline{
             git branch: 'dev', credentialsId: 'ci-mekdep', url: 'https://github.com/NaZyM0101/test-fo-multi'
             echo "you are now in dev branch"
 
-            echo "Your appdir is ${appDir}
+            echo "Your appdir is ${appDir}"
         }
         }
         stage("Checkout main"){
