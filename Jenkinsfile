@@ -2,7 +2,6 @@ pipeline{
     agent any
     environment{
         branch = sh(returnStdout: true, script: 'git branch --show-current').trim()
-        appDir = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")
     }
 
     stages{
@@ -13,6 +12,7 @@ pipeline{
             steps{
             git branch: 'dev', credentialsId: 'ci-mekdep', url: 'https://github.com/NaZyM0101/test-fo-multi'
             echo "you are now in dev branch"
+                def appDir = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")
             echo "Your appdir is ${appDir}"
             
         }
@@ -24,6 +24,7 @@ pipeline{
             steps{
                 git branch: 'main', credentialsId: 'ci-mekdep', url: 'https://github.com/NaZyM0101/test-fo-multi'
                 echo "you are now in main branch this is second tesst"
+                def appDir = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")
                 echo "Your appdir is ${appDir}"
         }
         }
