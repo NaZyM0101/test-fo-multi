@@ -5,19 +5,33 @@ pipeline {
   }
 
   stages {
-    stage("Checkout Branch") {
-      when {
-        expression { branch =~ /(dev|main)/ } // Check for either 'dev' or 'main' branch
-      }
-      steps {
-        git branch: "${env.branch}", credentialsId: 'ci-mekdep', url: 'https://github.com/NaZyM0101/test-fo-multi'
-        script {
-          echo "Switched to branch: ${env.branch}"
-          def appDir = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")
-          echo "Your appdir is ${appDir}"
+   stage("Checkout beta"){
+            when{
+                branch 'dev'
+            }
+                 git branch: 'dev', credentialsId: 'ci-mekdep', url: 'https://github.com/NaZyM0101/test-fo-multi'
+     script{
+            def appDir = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")
+            steps{
+
+            echo "you are now in dev branch"
+
+            echo "Your appdir is ${appDir}"
+        }}
         }
-      }
-    }
+        stage("Checkout main"){
+            when{
+                branch 'main'
+            }
+
+            steps{
+                git branch: 'main', credentialsId: 'ci-mekdep', url: 'https://github.com/NaZyM0101/test-fo-multi'
+              script{  
+              def appDir = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")
+                echo "you are now in main branch this is second tesst"
+                echo "Your appdir is ${appDir}"
+        }}
+        }
     stage("Final") {
       steps {
         echo "hello"
