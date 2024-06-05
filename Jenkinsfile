@@ -10,10 +10,11 @@ pipeline {
                 branch 'dev'
             }
                  git branch: 'dev', credentialsId: 'ci-mekdep', url: 'https://github.com/NaZyM0101/test-fo-multi'
-     script{
-            def appDir = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")
+    
+            
             steps{
-
+             script{
+               def appDir = Jenkins.instance.getItemByFullName("${env.JOB_NAME}")
             echo "you are now in dev branch"
 
             echo "Your appdir is ${appDir}"
